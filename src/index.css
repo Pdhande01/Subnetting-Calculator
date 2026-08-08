@@ -1,0 +1,175 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Outfit:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-slate-950 text-slate-100 font-sans selection:bg-cyber-cyan selection:text-slate-950 transition-colors duration-300;
+    overflow-x: hidden;
+  }
+
+  body.light {
+    @apply bg-slate-50 text-slate-900 selection:bg-cyber-blue selection:text-white;
+  }
+}
+
+/* Glassmorphism Styles */
+.glass-card {
+  @apply backdrop-blur-md bg-slate-900/60 border border-slate-800/80 rounded-xl transition-all duration-300;
+}
+
+body.light .glass-card {
+  @apply bg-white/70 border-slate-200/80 shadow-sm;
+}
+
+.glass-card-hover {
+  @apply hover:border-cyber-cyan/40 hover:shadow-cyan-glow;
+}
+
+body.light .glass-card-hover {
+  @apply hover:border-cyber-blue/40 hover:shadow-md;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-slate-950;
+}
+
+body.light ::-webkit-scrollbar-track {
+  @apply bg-slate-100;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-800 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-cyber-cyan;
+}
+
+body.light ::-webkit-scrollbar-thumb:hover {
+  @apply bg-cyber-blue;
+}
+
+/* Cyber Grid Background Layer */
+.cyber-grid {
+  background-image: 
+    linear-gradient(to right, rgba(0, 240, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 240, 255, 0.035) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+body.light .cyber-grid {
+  background-image: 
+    linear-gradient(to right, rgba(14, 165, 233, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(14, 165, 233, 0.05) 1px, transparent 1px);
+}
+
+.cyber-grid-anim {
+  mask-image: radial-gradient(ellipse 60% 50% at 50% 50%, #000 60%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 60% 50% at 50% 50%, #000 60%, transparent 100%);
+}
+
+/* Glow Text */
+.text-glow-cyan {
+  text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+}
+
+.text-glow-green {
+  text-shadow: 0 0 10px rgba(57, 255, 20, 0.5);
+}
+
+/* Print CSS */
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .print-block {
+    break-inside: avoid;
+    border: 1px solid #cbd5e1 !important;
+    background: white !important;
+    color: black !important;
+    box-shadow: none !important;
+  }
+  .print-text {
+    color: black !important;
+    text-shadow: none !important;
+  }
+}
+
+/* OSINT Collapsible Tree Styling */
+.osint-tree ul {
+  position: relative;
+  padding-left: 26px;
+  list-style: none;
+}
+
+.osint-tree li {
+  position: relative;
+  margin: 0;
+  padding: 6px 0;
+}
+
+/* Vertical connector lines */
+.osint-tree ul::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 10px;
+  width: 1px;
+  background: rgba(0, 240, 255, 0.25);
+}
+
+body.light .osint-tree ul::before {
+  background: rgba(14, 165, 233, 0.25);
+}
+
+/* Horizontal branch lines */
+.osint-tree li::before {
+  content: "";
+  position: absolute;
+  top: 20px;
+  left: 10px;
+  width: 16px;
+  height: 1px;
+  background: rgba(0, 240, 255, 0.25);
+}
+
+body.light .osint-tree li::before {
+  background: rgba(14, 165, 233, 0.25);
+}
+
+/* Cover extending vertical line for last child nodes */
+.osint-tree li:last-child::after {
+  content: "";
+  position: absolute;
+  top: 20px;
+  bottom: 0;
+  left: 9px;
+  width: 3px;
+  background: #020617;
+}
+
+body.light .osint-tree li:last-child::after {
+  background: #f8fafc;
+}
+
+.osint-tree li:last-child > ul::before {
+  display: none;
+}
+
